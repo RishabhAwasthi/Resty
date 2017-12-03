@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,11 +34,9 @@ import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.StorageReference;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
@@ -49,18 +48,19 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
     RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
     RecyclerView.Adapter adapter;
-    private static final String TAG = "MainActivity";
+
 
     private SliderLayout mDemoSlider;
     private FirebaseAuth mFirebaseAuth;
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     private FirebaseStorage mFirebaseStorage;
-    private StorageReference mStorageReference;
 
     private static final int RC_SIGN_IN=1;
     private static final int RC_PHOTO_PICKER = 2;
 
     private static String mUsername,memail;
+
+
 
     private TextView nav_user,nav_mail,nav_picker;
     private ImageView nav_dp;
@@ -70,15 +70,11 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-
-
-
-
-//
       toolbar = (Toolbar) findViewById(R.id.tool_bar);
       toolbar.setTitle("Resty");
         toolbar.setTitleTextColor(Color.WHITE);
         setSupportActionBar(toolbar);
+
 
 
         final DrawerLayout drawerLayout = (DrawerLayout) findViewById(R.id.drawer);
@@ -89,9 +85,6 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
         toggle.syncState();
 
 
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
         NavigationView nv =(NavigationView) findViewById(R.id.nav);
         View hView =  nv.getHeaderView(0);
         nav_user = (TextView)hView.findViewById(R.id.profile_name);
@@ -101,8 +94,8 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
         nav_dp=(ImageView)hView.findViewById(R.id.dp);
 
         SharedPreferences myPrefrence = getPreferences(MODE_PRIVATE);
-        String imageS = myPrefrence.getString("imagePreferance", "");
-        Bitmap imageB;
+        final String imageS = myPrefrence.getString("imagePreferance", "");
+        final Bitmap imageB;
         if(!imageS.equals("")) {
             imageB = decodeToBase64(imageS);
             nav_dp.setImageBitmap(imageB);
@@ -111,7 +104,6 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
 
         mFirebaseStorage = FirebaseStorage.getInstance();
-        mStorageReference = mFirebaseStorage.getReference().child("profile_pics");
 
 
         nav_picker.setOnClickListener(new View.OnClickListener() {
@@ -130,16 +122,44 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 int id =item.getItemId();
-                if(id==R.id.sign_out)
+                if(id== R.id.profile)
+                {
+                    toolbar.setTitle("Profile");
+                    ProfileFragment profileFragment = new ProfileFragment();
+                    FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.mainframe, profileFragment, profileFragment.getTag()).commit();
+                }
+                else if(id==R.id.home)
+                {
+                    Intent i = new Intent(MainActivity.this,MainActivity.class);
+                    startActivity(i);
+                }else if(id==R.id.cuisine)
+                {
+                    toolbar.setTitle("Cuisine");
+                    CuisineFragment cuisineFragment = new CuisineFragment();
+                    FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.mainframe, cuisineFragment).commit();
+                }
+                else if(id==R.id.bookings)
+                {
+                    toolbar.setTitle("Bookings");
+                    BookingsFragment bookingsFragment = new BookingsFragment();
+                    FragmentManager manager = getSupportFragmentManager();
+                    manager.beginTransaction().replace(R.id.mainframe, bookingsFragment).commit();
+
+
+                }
+
+               else if(id==R.id.sign_out)
                     AuthUI.getInstance().signOut(MainActivity.this);
                 else if(id == R.id.contact) {
-                    Toast.makeText(MainActivity.this, mUsername+" It's Under Construction " , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Hey! "+ mUsername+" It's Under Construction " , Toast.LENGTH_SHORT).show();
 
                 }
                 else if(id== R.id.rate)
-                    Toast.makeText(MainActivity.this, mUsername+" It's Under Construction " , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Hey! "+ mUsername+" It's Under Construction " , Toast.LENGTH_SHORT).show();
                 else if(id == R.id.review)
-                    Toast.makeText(MainActivity.this, mUsername+" It's Under Construction " , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"Hey! "+ mUsername+" It's Under Construction " , Toast.LENGTH_SHORT).show();
 
                 drawerLayout.closeDrawers();
 
@@ -179,7 +199,7 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
             mDemoSlider.addSlider(textSliderView);
         }
-        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.Accordion);
+        mDemoSlider.setPresetTransformer(SliderLayout.Transformer.FlipHorizontal);
         mDemoSlider.setPresetIndicator(SliderLayout.PresetIndicators.Center_Bottom);
         mDemoSlider.setCustomAnimation(new DescriptionAnimation());
         mDemoSlider.setDuration(3000);
@@ -267,6 +287,14 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
         return imageEncoded;
     }
 
+    public static String getUsername() {
+        return mUsername;
+    }
+    public static String getEmail()
+    {
+        return memail;
+    }
+
 
 
 
@@ -332,9 +360,6 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
             catch (FileNotFoundException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
             }
                /* Uri selectedImageUri = data.getData();
 
@@ -389,9 +414,19 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
 
     }
 
+
+
+
+
+
+
+
     @Override
     public void onSliderClick(BaseSliderView slider) {
         Toast.makeText(this,slider.getBundle().get("extra") + "",Toast.LENGTH_SHORT).show();
+        IndianCuisineFragment indiancuisineFragment = new IndianCuisineFragment();
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.mainframe, indiancuisineFragment).commit();
     }
     @Override
     public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}

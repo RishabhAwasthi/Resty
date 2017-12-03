@@ -14,13 +14,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
 
-    Context context;
+   static Context context;
 
 
-    private String[] ratings = {"4", "3.5", "4.5", "3", "3.5", "4.7", "5"
+    private static String[] ratings = {"4", "3.5", "4.5", "3", "3.5", "4.7", "5"
     };
 
-    private int[] images = {R.drawable.dominos,
+    private static int[] images = {R.drawable.dominos,
             R.drawable.chutney,
             R.drawable.kfc,
             R.drawable.swagat,
@@ -31,16 +31,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     };
 
-    private String[] names = {"Dominos", "Chutneys", "KFC", "Swagat", "Paradise ", "Bawarchi", "Taj Banjara "
+    private static String[] names = {"Dominos", "Chutneys", "KFC", "Swagat", "Paradise ", "Bawarchi", "Taj Banjara "
     };
-    private String[] cuisine = {"Italian", "Indian", "Australian", "South Indian", "Deccani ", "Central Indian", "Continental "
+    private static String[] cuisine = {"Italian", "Indian", "Australian", "South Indian", "Deccani ", "Central Indian", "Continental "
     };
 
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
         View v = LayoutInflater.from(viewGroup.getContext())
-                .inflate(R.layout.card_layout, viewGroup, false);
+                .inflate(R.layout.home_card, viewGroup, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
@@ -60,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return names.length;
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder {
+    static class ViewHolder extends RecyclerView.ViewHolder {
 
         public int currentItem;
         public ImageView itemImage;
@@ -87,6 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     // i.putExtra("Issue",names[position]);
                    // Bundle extras = new Bundle();
                     Toast.makeText(context,names[position],Toast.LENGTH_SHORT).show();
+
 
 
                    // extras.putString("Issue", names[position]);
