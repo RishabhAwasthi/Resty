@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "207950396325",
+    "firebase_url": "https://resty-007.firebaseio.com",
+    "project_id": "resty-007",
+    "storage_bucket": "resty-007.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:207950396325:android:0879a9d4d3f0974a",
+        "android_client_info": {
+          "package_name": "com.example.awasthis.resty"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "207950396325-hg7292b12v384v58f7vl95aojj1t9851.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.awasthis.resty",
+            "certificate_hash": "d73bdc70254f08bb7ba1bf8872efb0664d38a89c"
+          }
+        },
+        {
+          "client_id": "207950396325-6hoko0b46l5cii64hgbq26iv3u1udko2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBsio_c-Ul2MbVPBkD7bHMdJvpKeO6lpqc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "207950396325-6hoko0b46l5cii64hgbq26iv3u1udko2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
