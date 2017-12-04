@@ -14,13 +14,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
 
-   static Context context;
+    Context context;
 
 
-    private static String[] ratings = {"4", "3.5", "4.5", "3", "3.5", "4.7", "5"
+    private  String[] ratings = {"4", "3.5", "4.5", "3", "3.5", "4.7", "5"
     };
 
-    private static int[] images = {R.drawable.dominos,
+    private  int[] images = {R.drawable.dominos,
             R.drawable.chutney,
             R.drawable.kfc,
             R.drawable.swagat,
@@ -31,9 +31,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     };
 
-    private static String[] names = {"Dominos", "Chutneys", "KFC", "Swagat", "Paradise ", "Bawarchi", "Taj Banjara "
+    private  String[] names = {"Dominos", "Chutneys", "KFC", "Swagat", "Paradise ", "Bawarchi", "Taj Banjara "
     };
-    private static String[] cuisine = {"Italian", "Indian", "Australian", "South Indian", "Deccani ", "Central Indian", "Continental "
+    private  String[] cuisine = {"Italian", "Indian", "Australian", "South Indian", "Deccani ", "Central Indian", "Continental "
     };
 
 
@@ -60,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         return names.length;
     }
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
+     class ViewHolder extends RecyclerView.ViewHolder {
 
         public int currentItem;
         public ImageView itemImage;
