@@ -439,4 +439,14 @@ public class MainActivity extends AppCompatActivity implements BaseSliderView.On
     @Override
     public void onPageScrollStateChanged(int state) {}
 
+    @Override
+    public void onBackPressed() {
+
+        Intent startMain = new Intent(this,MainActivity.class);
+
+        startActivity(startMain);
+
+    }
+
+
 }

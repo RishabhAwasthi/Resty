@@ -1,13 +1,14 @@
 package com.example.awasthis.resty;
 
 import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
@@ -15,6 +16,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
 
     Context context;
+    private String[] waitTime={"1 hr","1.5 hr","2 hr","1.25 hr","1 hr","1.5 hr","2 hr"};
 
 
     private  String[] ratings = {"4", "3.5", "4.5", "3", "3.5", "4.7", "5"
@@ -52,6 +54,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         viewHolder.itemImage.setImageResource(images[i]);
         viewHolder.itemName.setText(names[i]);
         viewHolder.itemCuisine.setText(cuisine[i]);
+        viewHolder.itemWait.setText(waitTime[i]);
+
+
 
     }
 
@@ -67,6 +72,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         public TextView itemRating;
         public TextView itemName,itemCuisine;
+         public TextView itemWait;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -77,23 +83,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             itemRating = (TextView) itemView.findViewById(R.id.rating);
             itemName = (TextView) itemView.findViewById(R.id.name);
             itemCuisine = (TextView) itemView.findViewById(R.id.cuisine);
+            itemWait = (TextView) itemView.findViewById(R.id.wait_time);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     int position = getAdapterPosition();
                     context = v.getContext();
-                   // Intent i = new Intent(context, IssuesActivity.class);
-                    // i.putExtra("Issue",names[position]);
-                   // Bundle extras = new Bundle();
-                    Toast.makeText(context,names[position],Toast.LENGTH_SHORT).show();
+                    Intent i = new Intent(context, DetailsActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("Name", names[position]);
+                    extras.putString("Image",String.valueOf(images[position]));
+                    i.putExtras(extras);
+                    context.startActivity(i);
+                    //Toast.makeText(context,names[position],Toast.LENGTH_SHORT).show();
 
-
-
-                   // extras.putString("Issue", names[position]);
-                   // extras.putString("Price", details[position]);
-                   // i.putExtras(extras);
-                   // context.startActivity(i);
 
                 }
             });

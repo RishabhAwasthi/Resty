@@ -26,26 +26,35 @@
         android:scrollbars="none"
 
         >
-        <RelativeLayout
+        <FrameLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/mainframe">
+            android:id="@+id/mainframe"
+            >
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        >
 
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:scrollbars="none"
-    >
 
-            <LinearLayout
+
+
+        <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:focusableInTouchMode="true"
-                android:orientation="vertical"
+                android:layout_height="wrap_content"
+            android:orientation="vertical"
                 >
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-                <com.daimajia.slider.library.SliderLayout
+
+
+
+
+        <com.daimajia.slider.library.SliderLayout
                     android:id="@+id/slider"
                     android:layout_width="match_parent"
                     custom:pager_animation="Fade"
@@ -55,22 +64,29 @@
                     android:layout_height="200dp"
                     android:padding="0dp"
                     android:background="@color/colorPrimary"
-
                     />
+            </LinearLayout>
 
-                <android.support.v7.widget.RecyclerView
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+
+            <android.support.v7.widget.RecyclerView
                     android:id="@+id/recycler_view"
                     android:layout_marginTop="10dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:scrollbars="none"
-                    android:orientation="vertical"
 
                     />
-            </LinearLayout>
-            </ScrollView>
+                </LinearLayout>
+            
+        </LinearLayout>
 
-        </RelativeLayout>
+    </ScrollView>
+        </FrameLayout>
+
 
         <android.support.design.widget.NavigationView
             app:headerLayout="@layout/header"

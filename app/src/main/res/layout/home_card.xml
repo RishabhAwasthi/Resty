@@ -92,19 +92,27 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp">
+                android:layout_marginTop="8dp"
+                >
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Menu "
-                    android:textSize="15sp"
+                    android:text="Avg Waiting Time:"
+                    android:textSize="13sp"
+                    android:textStyle="italic"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/wait_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3 hr"
+                    android:layout_marginLeft="8dp"
+                    android:textSize="13sp"
                     android:textStyle="bold"
-                    android:layout_marginTop="4dp"/>
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="35dp"
-                    android:layout_height="30dp"
-                    android:src="@mipmap/menu"
-                    android:layout_marginLeft="8dp"/>
+                    android:gravity="bottom"
+                    android:textColor="@color/black"
+                    />
 
 
             </LinearLayout>

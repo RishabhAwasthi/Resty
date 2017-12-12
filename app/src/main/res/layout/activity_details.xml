@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:custom="http://schemas.android.com/apk/res-auto"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.awasthis.resty.DetailsActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary" />
+    <FrameLayout
+        android:id="@+id/menuframe"
+        android:layout_width="320dp"
+        android:layout_height="400dp"
+        android:layout_below="@+id/tool_bar"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="40dp"></FrameLayout>
+
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/tool_bar"
+        android:layout_marginTop="10dp">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/cuisine_name"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:text="Name"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:gravity="center"
+            />
+
+
+        <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/cuisine_bg"
+        android:layout_width="230dp"
+        android:layout_height="210dp"
+        android:src="@mipmap/best_rest"
+        android:paddingTop="8dp"
+        android:layout_centerHorizontal="true"
+            android:layout_below="@+id/cuisine_name"
+
+        />
+    <Button
+        android:id="@+id/location"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:text="Click For Location"
+        android:textColor="@color/black"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        android:layout_below="@+id/cuisine_bg"
+        android:gravity="center"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/edittext"
+        android:layout_centerHorizontal="true"
+        android:padding="8dp"
+
+        />
+        <com.daimajia.slider.library.SliderLayout
+            android:id="@+id/slider"
+            android:layout_width="match_parent"
+            custom:pager_animation="Fade"
+            custom:auto_cycle="true"
+            custom:indicator_visibility="visible"
+            custom:pager_animation_span="1100"
+            android:layout_height="170dp"
+            android:padding="0dp"
+            android:background="@color/colorPrimary"
+            android:layout_below="@+id/location"
+            android:layout_marginTop="16dp"
+
+            />
+
+
+        <LinearLayout
+        android:id="@+id/lin1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/slider"
+        android:layout_marginTop="16dp"
+        android:layout_marginLeft="16dp">
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="100dp"
+            >
+            <TextView
+            android:layout_width="wrap_content"
+                android:id="@+id/tables"
+
+            android:layout_height="wrap_content"
+            android:text="Tables available:   "
+            android:textSize="20sp"
+            android:textStyle="italic"
+            android:textColor="@color/black"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="6"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_alignRight="@+id/tables"/>
+
+            <Button
+                android:id="@+id/book"
+                android:layout_height="wrap_content"
+                android:layout_width="wrap_content"
+                android:text="Book Now"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                android:textStyle="italic"
+                android:layout_below="@+id/tables"
+                android:gravity="center"
+                android:background="@drawable/edittext"
+                android:padding="12dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginLeft="8dp"
+
+                />
+
+
+        </RelativeLayout>
+        <Button
+            android:id="@+id/menu"
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="Menu"
+            android:textColor="@color/black"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            android:layout_below="@+id/cuisine_name"
+            android:gravity="center"
+            android:background="@drawable/edittext"
+            android:padding="10dp"
+            android:layout_marginLeft="68dp"
+            android:layout_marginTop="35dp"
+
+            />
+
+    </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/combo"
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:text="Combo Deals"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/lin1"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            />
+        <TextView
+            android:id="@+id/Comments"
+            android:layout_height="60dp"
+            android:layout_width="match_parent"
+            android:text="Comments and Ratings"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            android:textStyle="bold|italic"
+            android:layout_below="@+id/combo"
+            android:gravity="center"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            />
+
+
+
+
+
+
+
+
+    </RelativeLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+
+</RelativeLayout>
